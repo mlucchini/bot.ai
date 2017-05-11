@@ -1,0 +1,15 @@
+# Docker
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Python
+.env
+
+# IDE
+.idea
+*.iml
+
+# bot.ai
+trained_model
+tests

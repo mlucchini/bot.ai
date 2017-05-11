@@ -1,0 +1,60 @@
+{
+  "data": [
+    {
+      "text": "I want to book a flight",
+      "entities": [
+        {
+          "entity": "intent",
+          "value": "book_flight"
+        }
+      ]
+    },
+    {
+      "text": "Please book a train",
+      "entities": [
+        {
+          "entity": "intent",
+          "value": "book_train"
+        }
+      ]
+    },
+    {
+      "text": "Let me book a car",
+      "entities": [
+        {
+          "entity": "intent",
+          "value": "book_car"
+        }
+      ]
+    },
+    {
+      "text": "I would like to book a car",
+      "entities": [
+        {
+          "entity": "intent",
+          "value": "book_car"
+        }
+      ]
+    },
+    {
+      "text": "Let me rent a car please",
+      "entities": [
+        {
+          "entity": "intent",
+          "value": "book_car"
+        }
+      ]
+    },
+    {
+      "text" : "What is the weather here?",
+      "entities" : [
+        {
+          "entity" : "location",
+          "value" : "here",
+          "start" : 20,
+          "end" : 24
+        }
+      ]
+    }
+  ]
+}
