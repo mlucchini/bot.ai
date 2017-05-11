@@ -17,13 +17,13 @@ def test_entity_trainer():
     try:
         trainer = EntityTrainer(output_directory)
         expressions = [
-            Expression('here', [PosEntity('here', 0, 4, 'test_location')]),
-            Expression('Here', [PosEntity('Here', 0, 4, 'test_location')]),
-            Expression('A here', [PosEntity('here', 2, 6, 'test_location')]),
-            Expression('B here', [PosEntity('here', 2, 6, 'test_location')]),
-            Expression('Here too', [PosEntity('Here', 0, 4, 'test_location')]),
-            Expression('Here me', [PosEntity('Here', 0, 4, 'test_location')]),
-            Expression('Here in', [PosEntity('Here', 0, 4, 'test_location')])]
+            Expression('here', None, [PosEntity('here', 0, 4, 'test_location')]),
+            Expression('Here', None, [PosEntity('Here', 0, 4, 'test_location')]),
+            Expression('A here', None, [PosEntity('here', 2, 6, 'test_location')]),
+            Expression('B here', None, [PosEntity('here', 2, 6, 'test_location')]),
+            Expression('Here too', None, [PosEntity('Here', 0, 4, 'test_location')]),
+            Expression('Here me', None, [PosEntity('Here', 0, 4, 'test_location')]),
+            Expression('Here in', None, [PosEntity('Here', 0, 4, 'test_location')])]
         trainer.train(expressions)
 
         text = 'Here'

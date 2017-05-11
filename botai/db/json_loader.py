@@ -3,6 +3,7 @@ import json
 from botai.model.expression import Expression
 from botai.model.intent import Intent
 from botai.model.pos_entity import PosEntity
+from botai.nlp.english import English
 from botai.util.converter import to_json
 
 expressions_filename = 'expressions.json'
@@ -11,6 +12,7 @@ expressions_filename = 'expressions.json'
 class JsonLoader(object):
     def __init__(self, folder):
         self.folder = folder
+        self.nlp = English.instance().nlp
 
     def expressions(self):
         try:
@@ -22,6 +24,7 @@ class JsonLoader(object):
 
     def expression(self, element):
         text = element['text']
+        doc = self.nlp(text)
         entities = []
         for entity in element['entities']:
             name = entity['entity']
@@ -30,7 +33,7 @@ class JsonLoader(object):
                 entities.append(Intent(text, value))
             else:
                 entities.append(PosEntity(value, entity['start'], entity['end'], name))
-        return Expression(text, entities)
+        return Expression(text, doc, entities)
 
     def __to_string(self, filename):
         path = self.folder + '/' + filename

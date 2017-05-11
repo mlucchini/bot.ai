@@ -23,6 +23,7 @@ class EntityTrainer(object):
         for label in unique_labels:
             self.nlp.entity.add_label(label)
         self.__train_ner(pos_entities)
+        print('Entity recognizer trained')
 
     def __train_ner(self, pos_entities):
         self.__add_words_to_vocab(pos_entities)
