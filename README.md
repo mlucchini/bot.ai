@@ -1,4 +1,5 @@
 [![Build Status](https://img.shields.io/travis/mlucchini/bot.ai.svg)](https://travis-ci.org/mlucchini/bot.ai)
+[![Heroku Deployment](https://heroku-badge.herokuapp.com/?app=kitt-ai&root=metadata&svg=1)](https://kitt-ai.herokuapp.com)
 
 # bot.ai
 

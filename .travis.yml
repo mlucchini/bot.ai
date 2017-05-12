@@ -10,3 +10,9 @@ install:
   - python -m spacy download en
 
 script: python setup.py nosetests
+
+deploy:
+  provider: heroku
+  api-key:
+    secure: $HEROKU_API_KEY
+  app: kitt-ai
