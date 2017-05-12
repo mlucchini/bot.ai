@@ -19,7 +19,7 @@ class JsonLoader(object):
             text = self.__to_string(expressions_filename)
             elements = json.loads(text)['data']
             return [self.expression(element) for element in elements]
-        except ValueError, e:
+        except ValueError as e:
             print('Invalid expressions JSON. %s' % e)
 
     def expression(self, element):
