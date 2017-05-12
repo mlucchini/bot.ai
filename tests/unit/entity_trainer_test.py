@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 
+import itertools
 import shutil
 from tempfile import mkdtemp
 
@@ -16,24 +17,24 @@ def test_entity_trainer():
     output_directory = mkdtemp()
     try:
         trainer = EntityTrainer(output_directory)
-        expressions = [
-            Expression('here', None, [PosEntity('here', 0, 4, 'test_location')]),
-            Expression('Here', None, [PosEntity('Here', 0, 4, 'test_location')]),
-            Expression('A here', None, [PosEntity('here', 2, 6, 'test_location')]),
-            Expression('B here', None, [PosEntity('here', 2, 6, 'test_location')]),
-            Expression('Here too', None, [PosEntity('Here', 0, 4, 'test_location')]),
-            Expression('Here me', None, [PosEntity('Here', 0, 4, 'test_location')]),
-            Expression('Here in', None, [PosEntity('Here', 0, 4, 'test_location')])]
+        expressions = []
+        word = 'here'
+        words = [word, 'car', 'book', 'me', 'rhinoceros', 'World', 'John', 'bank', 'a']
+        for L in range(0, len(words)+1):
+            for subset in itertools.combinations(words, L):
+                sentence = ' '.join(map(str, subset))
+                if word in sentence:
+                    index = sentence.index(word)
+                    entities = [PosEntity(word, index, index+len(word), 'test_location')]
+                    expressions.append(Expression(word, None, entities))
         trainer.train(expressions)
 
-        text = 'Here'
         nlp = spacy.load('en')
+        labels_before_training = map(lambda e: e.label_, nlp(word).ents)
+        assert_not_in('test_location', labels_before_training)
+
         nlp2 = spacy.load('en', path=output_directory)
-
-        labels_before_training = map(lambda e: e.label_, nlp(text).ents)
-        assert_not_in(labels_before_training, ['test_location'])
-
-        labels_after_training = map(lambda e: e.label_, nlp2(text).ents)
-        assert_in(labels_after_training, ['test_location'])
+        labels_after_training = map(lambda e: e.label_, nlp2(word).ents)
+        assert_in('test_location', labels_after_training)
     finally:
         shutil.rmtree(output_directory)
