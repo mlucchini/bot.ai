@@ -1,20 +1,15 @@
 import random
 
-from pathlib import Path
 from spacy.gold import GoldParse
-
-from botai.db.in_memory import InMemoryDb
-from botai.nlp.english import English
 
 learn_rate = 0.001
 iterations = 1000
 
 
 class EntityTrainer(object):
-    def __init__(self, output_directory=Path('trained_model')):
-        self.nlp = English.instance().nlp
+    def __init__(self, nlp, output_directory):
+        self.nlp = nlp
         self.output_directory = output_directory
-        self.db = InMemoryDb.instance()
 
     def train(self, expressions):
         entities = [(entity, expression.text) for expression in expressions for entity in expression.entities]
@@ -23,7 +18,11 @@ class EntityTrainer(object):
         for label in unique_labels:
             self.nlp.entity.add_label(label)
         self.__train_ner(pos_entities)
-        print('Entity recognizer trained')
+        if not self.output_directory:
+            self.output_directory.mkdir()
+        self.nlp.save_to_directory(self.output_directory)
+        print('Entity recognizer trained and exported to %s' % self.output_directory)
+        print('   Labels trained: %d' % len(unique_labels))
 
     def __train_ner(self, pos_entities):
         self.__add_words_to_vocab(pos_entities)
@@ -39,9 +38,6 @@ class EntityTrainer(object):
             if loss == 0:
                 break
         self.nlp.end_training()
-        if not self.output_directory:
-            self.output_directory.mkdir()
-        self.nlp.save_to_directory(self.output_directory)
 
     def __add_words_to_vocab(self, pos_entities):
         docs = [self.nlp.make_doc(entity.text) for entity, _ in pos_entities]

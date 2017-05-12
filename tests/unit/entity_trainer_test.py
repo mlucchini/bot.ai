@@ -10,13 +10,16 @@ from nose.tools import assert_not_in
 
 from botai.model.expression import Expression
 from botai.model.pos_entity import PosEntity
+from botai.nlp.english import English
 from botai.nlp.entity_trainer import EntityTrainer
 
 
 def test_entity_trainer():
     output_directory = mkdtemp()
     try:
-        trainer = EntityTrainer(output_directory)
+        English.instance().load()
+        nlp = English.instance().nlp
+        trainer = EntityTrainer(nlp, output_directory)
         expressions = []
         word = 'here'
         words = [word, 'car', 'book', 'me', 'rhinoceros', 'World', 'John', 'bank', 'a']

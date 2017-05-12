@@ -8,18 +8,18 @@ from util.converter import to_json
 app = Flask(__name__)
 
 
-@app.route('/entities')
+@app.route('/entities', methods=['GET'])
 def entities_api():
     text = request.args.get('text')
     return json(entities.get(text))
 
 
-@app.route('/expressions')
+@app.route('/expressions', methods=['GET'])
 def expressions_api():
     return json(expressions.get())
 
 
-@app.route('/metadata')
+@app.route('/metadata', methods=['GET'])
 def metadata_api():
     return json(metadata.get())
 

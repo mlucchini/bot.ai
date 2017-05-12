@@ -5,6 +5,7 @@ from botai.nlp.pos_entity_extractor import PosEntityExtractor
 
 
 def test_pos_entity_extractor():
+    English.instance().load()
     document = English.instance().nlp(u'Steve Jobs had Apple yesterday')
     entities = PosEntityExtractor(document).entities
     assert_equals(3, len(entities))
