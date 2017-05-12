@@ -1,9 +1,7 @@
 from flask import Flask, request, Response
 
-from botai.service import metadata
-from service import entities
-from service import expressions
-from util.converter import to_json
+from botai.service import entities, expressions, metadata
+from botai.util.converter import to_json
 
 app = Flask(__name__)
 
