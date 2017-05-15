@@ -19,6 +19,15 @@
       ]
     },
     {
+      "text": "I need a train for tomorrow",
+      "entities": [
+        {
+          "entity": "intent",
+          "value": "book_train"
+        }
+      ]
+    },
+    {
       "text": "Let me book a car",
       "entities": [
         {
@@ -46,13 +55,57 @@
       ]
     },
     {
-      "text" : "What is the weather here?",
+      "text": "What is the weather here?",
       "entities" : [
         {
           "entity" : "location",
           "value" : "here",
           "start" : 20,
           "end" : 24
+        }
+      ]
+    },
+    {
+      "text": "I live here",
+      "entities" : [
+        {
+          "entity" : "location",
+          "value" : "here",
+          "start" : 7,
+          "end" : 11
+        }
+      ]
+    },
+    {
+      "text": "My email is john.doe@wanadoo.fr",
+      "entities": [
+        {
+          "entity": "email",
+          "value": "john.doe@wanadoo.fr",
+          "start": 12,
+          "end": 31
+        }
+      ]
+    },
+    {
+      "text": "Send a message to bertrand.vier@gmail.com",
+      "entities": [
+        {
+          "entity": "email",
+          "value": "bertrand.vier@gmail.com",
+          "start": 18,
+          "end": 41
+        }
+      ]
+    },
+    {
+      "text": "Email: david.yann@yahoo.com",
+      "entities": [
+        {
+          "entity": "email",
+          "value": "david.yann@yahoo.com",
+          "start": 7,
+          "end": 27
         }
       ]
     }

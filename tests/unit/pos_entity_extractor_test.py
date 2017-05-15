@@ -2,10 +2,11 @@ from nose.tools import assert_equals
 
 from botai.nlp.english import English
 from botai.nlp.pos_entity_extractor import PosEntityExtractor
+from util_vocab_loader import load_vocab
 
 
 def test_pos_entity_extractor():
-    English.instance().load()
+    load_vocab()
     document = English.instance().nlp(u'Steve Jobs had Apple yesterday')
     entities = PosEntityExtractor(document).entities
     assert_equals(3, len(entities))

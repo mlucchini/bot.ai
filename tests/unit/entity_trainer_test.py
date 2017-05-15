@@ -12,12 +12,13 @@ from botai.model.expression import Expression
 from botai.model.pos_entity import PosEntity
 from botai.nlp.english import English
 from botai.nlp.entity_trainer import EntityTrainer
+from util_vocab_loader import load_vocab
 
 
 def test_entity_trainer():
     output_directory = mkdtemp()
     try:
-        English.instance().load()
+        load_vocab()
         nlp = English.instance().nlp
         trainer = EntityTrainer(nlp, output_directory)
         expressions = []
