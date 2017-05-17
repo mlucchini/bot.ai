@@ -16,7 +16,7 @@ run: build
 	$(WITH_PYENV) $(PYTHON) botai/main.py
 
 test:
-	python setup.py nosetests
+	$(WITH_PYENV) $(PYTHON) setup.py nosetests
 
 clean:
 	@rm -rf .env

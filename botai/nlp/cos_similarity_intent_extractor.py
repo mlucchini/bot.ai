@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from botai.model.intent import Intent
 
 
-class IntentExtractor:
+class CosSimilarityIntentExtractor:
     def __init__(self, doc, expressions):
         self.intents = []
         expressions_with_intent = [exp for exp in expressions if exp.intent() is not None]

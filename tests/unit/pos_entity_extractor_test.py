@@ -1,8 +1,10 @@
+from __future__ import unicode_literals
+
 from nose.tools import assert_equals
 
 from botai.nlp.english import English
 from botai.nlp.pos_entity_extractor import PosEntityExtractor
-from util_vocab_loader import load_vocab
+from test_util import load_vocab
 
 
 def test_pos_entity_extractor():

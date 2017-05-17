@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from nose.tools import assert_less
 
 from botai.db.json_loader import JsonLoader
