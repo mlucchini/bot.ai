@@ -2,7 +2,7 @@ import logging
 import operator
 
 import numpy as np
-from keras.layers import LSTM, Dropout, Dense
+from keras.layers import LSTM, Dropout, Dense, Bidirectional
 from keras.models import Sequential
 from keras.utils import np_utils
 from sklearn.model_selection import train_test_split
@@ -34,7 +34,8 @@ class LSTMIntentNetwork(object):
         self.y = np_utils.to_categorical(intents_indices)
 
         self.model = Sequential()
-        self.model.add(LSTM(int(DOCUMENT_MAX_NUM_WORDS * 1.5), input_shape=(DOCUMENT_MAX_NUM_WORDS, self.num_features)))
+        self.model.add(Bidirectional(LSTM(int(DOCUMENT_MAX_NUM_WORDS * 1.5)),
+                                     input_shape=(DOCUMENT_MAX_NUM_WORDS, self.num_features)))
         self.model.add(Dropout(0.3))
         self.model.add(Dense(len(self.categories), activation='sigmoid'))
         self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])

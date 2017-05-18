@@ -17,8 +17,17 @@ def test_lstm_intent_network():
     expressions = [
         # Needs a lot more data
         expression(nlp, 'I need a train for tomorrow', 'book_train'),
-        expression(nlp, 'I will book a train please', 'book_train'),
-        expression(nlp, 'Let me book a flight for later today please', 'book_flight'),
+        expression(nlp, 'I will book a train', 'book_train'),
+        expression(nlp, 'Please book a train for me', 'book_train'),
+        expression(nlp, 'Let me book a flight for later today', 'book_flight'),
+        expression(nlp, 'I need to book a flight', 'book_flight'),
+        expression(nlp, 'Book at flight from Paris to London', 'book_flight'),
+        expression(nlp, 'Please book me the next bus', 'book_bus'),
+        expression(nlp, 'When can I book my next bus trip?', 'book_bus'),
+        expression(nlp, 'I need to book a bus', 'book_bus'),
+        expression(nlp, 'Get me the temperature', 'get_temperature'),
+        expression(nlp, 'What is the temperature?', 'get_temperature'),
+        expression(nlp, 'What is the temperature in Paris today?', 'get_temperature'),
     ]
     nn = LSTMIntentNetwork(nlp, expressions)
     nn.train()
